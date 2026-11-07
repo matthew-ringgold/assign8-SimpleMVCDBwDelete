@@ -26,4 +26,15 @@ function addUser(user, callback) {
 	);
 }
 
-module.exports = { getUsers, addUser };
+function deleteUser(userID, callback) {
+	conn.query(
+		'DELETE FROM users WHERE userID = ?',
+		[userID],
+		function (err, results) {
+			if (err) throw err;
+			callback(results);
+		}
+	);
+}
+
+module.exports = { getUsers, addUser, deleteUser };
